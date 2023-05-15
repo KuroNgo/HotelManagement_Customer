@@ -4,8 +4,10 @@ using System.Linq.Expressions;
 
 namespace HotelManagement_Customer.Data.Infrastructure
 {
-    //This is a generic, used to all class in my project
+    // This is a generic, used to all class in my project
     // Define some method
+    // where T : class : define generates
+    // T: represent a type that we do not know yet
     public interface IRepository<T> where T : class
     {
         // Marks an entity as new
@@ -15,7 +17,7 @@ namespace HotelManagement_Customer.Data.Infrastructure
         void Update(T entity);
 
         // Marks an entity to be removed
-        void Delete(T entity);
+        void Delete(int id);
 
         //Delete multi records
         void DeleteMulti(Expression<Func<T, bool>> where);
@@ -30,7 +32,7 @@ namespace HotelManagement_Customer.Data.Infrastructure
         IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
 
         IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null);
-        int COunt(Expression<Func<T, bool>> where);
+        int Count(Expression<Func<T, bool>> where);
         bool CheckContains(Expression<Func<T, bool>> predicate);
     }
 }

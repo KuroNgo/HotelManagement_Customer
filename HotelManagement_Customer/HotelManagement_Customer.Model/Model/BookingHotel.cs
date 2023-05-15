@@ -37,7 +37,7 @@ namespace HotelManagement_Customer.Model.Model
         [Required]
         public int HotelId { get; set; }
 
-        [ForeignKey("HotelID")]
+        [ForeignKey("HotelId")]
         public virtual HotelDetail HotelDetail { get; set; }
     }
 }

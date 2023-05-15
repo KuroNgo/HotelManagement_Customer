@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace HotelManagement_Customer.Data.Infrastructure
 {
-    public class RepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
 
@@ -46,7 +46,11 @@ namespace HotelManagement_Customer.Data.Infrastructure
         {
             dbSet.Remove(entity);
         }
-
+        public virtual void Delete(int id)
+        {
+            var entity = dbSet.Find(id);
+            dbSet.Remove(entity);
+        }
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
@@ -84,7 +88,7 @@ namespace HotelManagement_Customer.Data.Infrastructure
             return dbContext.Set<T>().AsQueryable();
         }
 
-        public T GetStringByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
         {
             return GetAll(includes).FirstOrDefault(expression);
         }

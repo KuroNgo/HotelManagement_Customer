@@ -2,6 +2,7 @@
 {
     public class DbFactory : Disposable, IDbFactory
     {
+        // Create a new object of DbContext
         HotelManagement_Customer_DbContext dbContext;
         public HotelManagement_Customer_DbContext Init()
         {
