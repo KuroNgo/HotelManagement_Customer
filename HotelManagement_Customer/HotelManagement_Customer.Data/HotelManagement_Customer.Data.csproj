@@ -63,9 +63,14 @@
     <Compile Include="Migrations\202305120711218_InitialCreate.designer.cs">
       <DependentUpon>202305120711218_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305150601132_AddErrorTable.cs" />
+    <Compile Include="Migrations\202305150601132_AddErrorTable.designer.cs">
+      <DependentUpon>202305150601132_AddErrorTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BookingHotelRepository.cs" />
+    <Compile Include="Repository\ErrorRepository.cs" />
     <Compile Include="Repository\HotelDetailRepository.cs" />
     <Compile Include="Repository\UserAccountRepository.cs" />
   </ItemGroup>
@@ -86,6 +91,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305120711218_InitialCreate.resx">
       <DependentUpon>202305120711218_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305150601132_AddErrorTable.resx">
+      <DependentUpon>202305150601132_AddErrorTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
