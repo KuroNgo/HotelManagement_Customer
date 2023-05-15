@@ -19,6 +19,7 @@ namespace HotelManagement_Customer.Data
         public DbSet<BookingHotel> BookingHotels { get; set; }
         public DbSet<HotelDetail> HotelDetail { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<Error> Error { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

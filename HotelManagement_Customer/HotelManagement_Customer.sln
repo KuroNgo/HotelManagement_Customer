@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement_Customer.Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement_Customer.UnitTest", "HotelManagement_Customer.UnitTest\HotelManagement_Customer.UnitTest.csproj", "{6A7FB2FF-9AED-421A-9258-53430F707CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement_Customer.WebMVC", "HotelManagement_Customer.WebMVC\HotelManagement_Customer.WebMVC.csproj", "{FD5C8969-996D-448E-A05B-0878A64E296F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement_Customer.Data", "HotelManagement_Customer.Data\HotelManagement_Customer.Data.csproj", "{BDDFB26E-1930-48A1-A8F0-47C741A43971}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{6A7FB2FF-9AED-421A-9258-53430F707CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A7FB2FF-9AED-421A-9258-53430F707CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A7FB2FF-9AED-421A-9258-53430F707CCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD5C8969-996D-448E-A05B-0878A64E296F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD5C8969-996D-448E-A05B-0878A64E296F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD5C8969-996D-448E-A05B-0878A64E296F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD5C8969-996D-448E-A05B-0878A64E296F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BDDFB26E-1930-48A1-A8F0-47C741A43971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BDDFB26E-1930-48A1-A8F0-47C741A43971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDDFB26E-1930-48A1-A8F0-47C741A43971}.Release|Any CPU.ActiveCfg = Release|Any CPU

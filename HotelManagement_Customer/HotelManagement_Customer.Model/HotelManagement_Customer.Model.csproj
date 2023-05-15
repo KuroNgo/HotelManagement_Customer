@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Model\BookingHotel.cs" />
+    <Compile Include="Model\Error.cs" />
     <Compile Include="Model\HotelDetail.cs" />
     <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,7 +14,6 @@ namespace HotelManagement_Customer.Service
         IEnumerable<UserAccount> GetAllAccount();
         IEnumerable<UserAccount> GetAllFullName(string fullName);
         UserAccount GetById(int id);
-        IEnumerable<UserAccount> GetAllGender(string gender);
         void SaveChanges();
     }
     public class UserServices : IUserService
@@ -40,32 +39,27 @@ namespace HotelManagement_Customer.Service
 
         public IEnumerable<UserAccount> GetAllAccount()
         {
-            return _userRepository.GetAll(new string[] { "" });
+            return _userRepository.GetAll();
         }
 
         public IEnumerable<UserAccount> GetAllFullName(string fullName)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<UserAccount> GetAllGender(string gender)
-        {
-            throw new NotImplementedException();
+            return _userRepository.GetByFullName(fullName);
         }
 
         public UserAccount GetById(int id)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Commit();
         }
 
         public void Update(UserAccount userAccount)
         {
-            throw new NotImplementedException();
+            _userRepository.Update(userAccount);
         }
     }
 }

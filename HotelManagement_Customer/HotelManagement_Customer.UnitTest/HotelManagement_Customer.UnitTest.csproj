@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +73,10 @@
       <Project>{a109a3d9-76e3-4c63-8e58-4b25dac60242}</Project>
       <Name>HotelManagement_Customer.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HotelManagement_Customer.WebMVC\HotelManagement_Customer.WebMVC.csproj">
-      <Project>{fd5c8969-996d-448e-a05b-0878a64e296f}</Project>
-      <Name>HotelManagement_Customer.WebMVC</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RepositoryTest\" />
+    <Folder Include="ServicesTest\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
