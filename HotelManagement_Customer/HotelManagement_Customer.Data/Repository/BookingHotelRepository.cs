@@ -9,7 +9,7 @@ namespace HotelManagement_Customer.Data.Repository
     }
     public class BookingHotelRepository : RepositoryBase<BookingHotel>, IBookingHotelRepository
     {
-        protected BookingHotelRepository(IDbFactory dbFactory)
+        public BookingHotelRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
         }
