@@ -1,22 +1,21 @@
 ﻿using HotelManagement_Customer.Data.Infrastructure;
 using HotelManagement_Customer.Data.Repository;
 using HotelManagement_Customer.Model.Model;
-using System;
 using System.Collections.Generic;
 
 namespace HotelManagement_Customer.Service
 {
-    public interface IUserService
+    public interface IUserServices
     {
-        void Add(UserAccount userAccount);
-        void Update(UserAccount userAccount);
+        void Add(UserAccount hotelDetail);
+        void Update(UserAccount hotelDetail);
         void Delete(int id);
-        IEnumerable<UserAccount> GetAllAccount();
-        IEnumerable<UserAccount> GetAllFullName(string fullName);
         UserAccount GetById(int id);
+        UserAccount GetByLoginName(string loginName);
+        IEnumerable<UserAccount> GetAllAccounts();
         void SaveChanges();
     }
-    public class UserServices : IUserService
+    public class UserServices : IUserServices
     {
         IUserAccountRepository _userRepository;
         IUnitOfWork _unitOfWork;
@@ -29,27 +28,32 @@ namespace HotelManagement_Customer.Service
 
         public void Add(UserAccount userAccount)
         {
-            _userRepository.Add(userAccount);
+            _userRepository.AddUser(userAccount);
+        }
+
+        public void Update(UserAccount userAccount)
+        {
+            _userRepository.UpdateUser(userAccount);
         }
 
         public void Delete(int id)
         {
-            _userRepository.Delete(id);
-        }
-
-        public IEnumerable<UserAccount> GetAllAccount()
-        {
-            return _userRepository.GetAll();
-        }
-
-        public IEnumerable<UserAccount> GetAllFullName(string fullName)
-        {
-            return _userRepository.GetByFullName(fullName);
+            _userRepository.DeleteUserById(id);
         }
 
         public UserAccount GetById(int id)
         {
-            return _userRepository.GetSingleById(id);
+            return _userRepository.GetUserById(id);
+        }
+
+        public UserAccount GetByLoginName(string loginName)
+        {
+            return _userRepository.GetUserByLoginName(loginName);
+        }
+
+        public IEnumerable<UserAccount> GetAllAccounts()
+        {
+            return _userRepository.GetAllUserAccounts();
         }
 
         public void SaveChanges()
@@ -57,9 +61,6 @@ namespace HotelManagement_Customer.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(UserAccount userAccount)
-        {
-            _userRepository.Update(userAccount);
-        }
+        
     }
 }
