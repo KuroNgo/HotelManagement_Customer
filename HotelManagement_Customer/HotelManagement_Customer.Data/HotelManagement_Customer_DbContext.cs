@@ -15,7 +15,6 @@ namespace HotelManagement_Customer.Data
             //When we load the parent table, the subtable is not included
             this.Configuration.LazyLoadingEnabled = false;
         }
-
         public DbSet<BookingHotel> BookingHotels { get; set; }
         public DbSet<HotelDetail> HotelDetail { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }

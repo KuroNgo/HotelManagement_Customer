@@ -42,7 +42,9 @@ namespace HotelManagement_Customer.Model.Model
         [DefaultValue(1)]
         public int Status { get; set; }
 
-        public virtual IEnumerable<BookingHotel> User { get; set; }
+        [MaxLength(255)]
+        public string RefreshToken { get; set; }
 
+        public virtual IEnumerable<BookingHotel> User { get; set; }
     }
 }
