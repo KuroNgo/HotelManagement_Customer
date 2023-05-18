@@ -78,13 +78,9 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Migrations\202305120711218_InitialCreate.cs" />
-    <Compile Include="Migrations\202305120711218_InitialCreate.designer.cs">
-      <DependentUpon>202305120711218_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305150601132_AddErrorTable.cs" />
-    <Compile Include="Migrations\202305150601132_AddErrorTable.designer.cs">
-      <DependentUpon>202305150601132_AddErrorTable.cs</DependentUpon>
+    <Compile Include="Migrations\202305180744165_InitialCreate.cs" />
+    <Compile Include="Migrations\202305180744165_InitialCreate.designer.cs">
+      <DependentUpon>202305180744165_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,11 +104,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305120711218_InitialCreate.resx">
-      <DependentUpon>202305120711218_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305150601132_AddErrorTable.resx">
-      <DependentUpon>202305150601132_AddErrorTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305180744165_InitialCreate.resx">
+      <DependentUpon>202305180744165_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

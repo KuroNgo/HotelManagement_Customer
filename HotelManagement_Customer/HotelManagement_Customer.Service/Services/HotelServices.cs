@@ -48,14 +48,16 @@ namespace HotelManagement_Customer.Service
             return _HotelDetailRepository.GetSingleById(id);
         }
 
+        public void Update(HotelDetail hotelDetail)
+        {
+            _HotelDetailRepository.Update(hotelDetail);
+        }
+
         public void SaveChanges()
         {
             _unitOfWork.Commit();
         }
 
-        public void Update(HotelDetail hotelDetail)
-        {
-            _HotelDetailRepository.Update(hotelDetail);
-        }
+        
     }
 }

@@ -13,7 +13,7 @@ namespace HotelManagement_Customer.Service
         UserAccount GetById(int id);
         UserAccount GetByLoginName(string loginName);
         IEnumerable<UserAccount> GetAllAccounts();
-        void ChangePassword(int id, string newPassword);
+        void ChangePassword(string email, string newPassword);
         void SaveChanges();
     }
     public class UserServices : IUserServices
@@ -57,9 +57,9 @@ namespace HotelManagement_Customer.Service
             return _userRepository.GetAllUserAccounts();
         }
 
-        public void ChangePassword(int id, string newPassword)
+        public void ChangePassword(string email, string newPassword)
         {
-            _userRepository.ChangePassword(id, newPassword);
+            _userRepository.ChangePassword(email, newPassword);
             _unitOfWork.Commit();
         }
 
