@@ -45,6 +45,10 @@ namespace HotelManagement_Customer.Model.Model
         [MaxLength(255)]
         public string RefreshToken { get; set; }
 
+        public string ResetToken { get; set; }
+
+        public DateTime? ResetTokenExpiration { get; set; }
+
         public virtual IEnumerable<BookingHotel> User { get; set; }
     }
 }

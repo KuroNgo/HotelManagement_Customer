@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\PasswordResetServices.cs" />
     <Compile Include="Services\BookingServices.cs" />
     <Compile Include="Services\ErrorServices.cs" />
     <Compile Include="Services\HotelServices.cs" />

@@ -1,9 +1,9 @@
 ﻿using HotelManagement_Customer.Data.Infrastructure;
 using HotelManagement_Customer.Model.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using BCrypt.Net;
+using System.Security.Cryptography;
 
 namespace HotelManagement_Customer.Data.Repository
 {
@@ -17,9 +17,14 @@ namespace HotelManagement_Customer.Data.Repository
         void DeleteUserById(int id);
 
         UserAccount GetUserById(int id);
+
         UserAccount GetUserByLoginName(string loginName);
 
         IEnumerable<UserAccount> GetAllUserAccounts();
+
+        void ChangePassword(int userId, string newPassword);
+        UserAccount GetUserByEmail(string email);
+
 
     }
     public class UserAccountRepository : RepositoryBase<UserAccount>, IUserAccountRepository
@@ -58,6 +63,21 @@ namespace HotelManagement_Customer.Data.Repository
         public IEnumerable<UserAccount> GetAllUserAccounts()
         {
             return GetAll();
+        }
+
+        public void ChangePassword(int id, string newPassword)
+        {
+            var user = GetSingleById(id);
+            if (user != null)
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                Update(user);
+            }
+        }
+
+        public UserAccount GetUserByEmail(string email)
+        {
+            return dbContext.Set<UserAccount>().FirstOrDefault(u => u.Email == email);
         }
     }
 }
