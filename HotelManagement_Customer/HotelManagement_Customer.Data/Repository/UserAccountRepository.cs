@@ -15,6 +15,7 @@ namespace HotelManagement_Customer.Data.Repository
         void UpdateUser(UserAccount userAccount);
 
         void DeleteUserById(int id);
+        void DeleteUserByEmail(string email);
 
         UserAccount GetUserById(int id);
 
@@ -22,7 +23,8 @@ namespace HotelManagement_Customer.Data.Repository
 
         IEnumerable<UserAccount> GetAllUserAccounts();
 
-        void ChangePassword(int userId, string newPassword);
+        void ChangePassword(string email, string newPassword);
+        void ChangePassword(int id, string newPassword);
         UserAccount GetUserByEmail(string email);
 
 
@@ -50,6 +52,15 @@ namespace HotelManagement_Customer.Data.Repository
             Delete(id);
         }
 
+        public void DeleteUserByEmail(string email)
+        {
+            var user = GetUserByEmail(email);
+            if (user != null)
+            {
+                Delete(user);
+            }
+        }
+
         public UserAccount GetUserById(int id)
         {
             return GetSingleById(id);
@@ -65,9 +76,19 @@ namespace HotelManagement_Customer.Data.Repository
             return GetAll();
         }
 
+        public void ChangePassword(string email, string newPassword)
+        {
+            var user = GetUserByEmail(email);
+            if (user != null)
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                Update(user);
+            }
+        }
+
         public void ChangePassword(int id, string newPassword)
         {
-            var user = GetSingleById(id);
+            var user = GetUserById(id);
             if (user != null)
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);

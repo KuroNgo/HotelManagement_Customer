@@ -6,6 +6,8 @@ using System;
 using BCrypt;
 using System.Collections.Generic;
 using System.Linq;
+using BCrypt.Net;
+using System.Data.Entity.Validation;
 
 namespace HotelManagement_Customer.UnitTest.Repository
 {
@@ -24,16 +26,35 @@ namespace HotelManagement_Customer.UnitTest.Repository
             _unitOfWork = new UnitOfWork(_dbFactory);
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            ClearTestData();
+        }
+
+        private void ClearTestData()
+        {
+            var allUsers = _userAccountRepository.GetAllUserAccounts();
+            foreach (var user in allUsers)
+            {
+                _userAccountRepository.Delete(user);
+            }
+            _unitOfWork.Commit();
+        }
+
         [TestMethod]
         public void GetUserByEmail_UserAccountRepository()
         {
-            string email = "test@example.com";
+            string email = "johndoe@example.com";
 
             var user = new UserAccount
             {
-                Email = email,
                 FullName = "John Doe",
+                Gender = "Male",
+                Email = "johndoe@example.com",
+                Phone = "1234567890",
                 LoginName = "johndoe",
+                DateOfBirth = new DateTime(1990, 1, 1),
                 Password = "password",
                 Status = 1
             };
@@ -54,9 +75,12 @@ namespace HotelManagement_Customer.UnitTest.Repository
         {
             var user = new UserAccount
             {
-                Email = "test@example.com",
                 FullName = "John Doe",
+                Gender = "Male",
+                Email = "johndoe@example.com",
+                Phone = "1234567890",
                 LoginName = "johndoe",
+                DateOfBirth = new DateTime(1990, 1, 1),
                 Password = "password",
                 Status = 1
             };
@@ -77,9 +101,12 @@ namespace HotelManagement_Customer.UnitTest.Repository
         {
             var user = new UserAccount
             {
-                Email = "test@example.com",
                 FullName = "John Doe",
+                Gender = "Male",
+                Email = "johndoe@example.com",
+                Phone = "1234567890",
                 LoginName = "johndoe",
+                DateOfBirth = new DateTime(1990, 1, 1),
                 Password = "password",
                 Status = 1
             };
@@ -100,25 +127,28 @@ namespace HotelManagement_Customer.UnitTest.Repository
         }
 
         [TestMethod]
-        public void DeleteUserById_UserAccountRepository()
+        public void DeleteUserByEmail_UserAccountRepository()
         {
             var user = new UserAccount
             {
-                Email = "test@example.com",
                 FullName = "John Doe",
+                Gender = "Male",
+                Email = "johndoe@example.com",
+                Phone = "1234567890",
                 LoginName = "johndoe",
+                DateOfBirth = new DateTime(1990, 1, 1),
                 Password = "password",
                 Status = 1
             };
-            _userAccountRepository.Add(user);
+            _userAccountRepository.AddUser(user);
             _unitOfWork.Commit();
 
-            int userId = user.Id;
+            string userEmail = user.Email;
 
-            _userAccountRepository.DeleteUserById(userId);
+            _userAccountRepository.DeleteUserByEmail(userEmail);
             _unitOfWork.Commit();
 
-            var result = _userAccountRepository.GetUserById(userId);
+            var result = _userAccountRepository.GetUserByEmail(userEmail);
 
             Assert.IsNull(result);
         }
@@ -128,9 +158,12 @@ namespace HotelManagement_Customer.UnitTest.Repository
         {
             var user = new UserAccount
             {
-                Email = "test@example.com",
                 FullName = "John Doe",
+                Gender = "Male",
+                Email = "johndoe@example.com",
+                Phone = "1234567890",
                 LoginName = "johndoe",
+                DateOfBirth = new DateTime(1990, 1, 1),
                 Password = "password",
                 Status = 1
             };
@@ -155,19 +188,25 @@ namespace HotelManagement_Customer.UnitTest.Repository
     {
         new UserAccount
         {
-            Email = "test1@example.com",
             FullName = "John Doe",
-            LoginName = "johndoe",
-            Password = "password",
-            Status = 1
+        Gender = "Male",
+        Email = "johndoe@example.com",
+        Phone = "1234567890",
+        LoginName = "johndoe",
+        DateOfBirth = new DateTime(1990, 1, 1),
+        Password = "password",
+        Status = 1
         },
         new UserAccount
         {
-            Email = "test2@example.com",
-            FullName = "Jane Smith",
-            LoginName = "janesmith",
-            Password = "password",
-            Status = 1
+            FullName = "Jane",
+        Gender = "Male",
+        Email = "Jane@example.com",
+        Phone = "1234567899",
+        LoginName = "jane",
+        DateOfBirth = new DateTime(1990, 1, 1),
+        Password = "password",
+        Status = 1
         }
     };
             foreach (var user in users)
@@ -182,20 +221,23 @@ namespace HotelManagement_Customer.UnitTest.Repository
 
             foreach (var user in users)
             {
-                _userAccountRepository.DeleteUserById(user.Id);
+                _userAccountRepository.DeleteUserByEmail(user.Email);
             }
             _unitOfWork.Commit();
         }
 
         [TestMethod]
-        public void ChangePassword_UserAccountRepository()
+        public void ChangePasswordById_UserAccountRepository()
         {
             var user = new UserAccount
             {
                 Email = "test@example.com",
                 FullName = "John Doe",
+                Gender = "Nam",
                 LoginName = "johndoe",
                 Password = "password",
+                Phone = "0329245971",
+                DateOfBirth = DateTime.Now,
                 Status = 1
             };
             _userAccountRepository.Add(user);
@@ -205,16 +247,39 @@ namespace HotelManagement_Customer.UnitTest.Repository
             string newPassword = "newpassword";
 
             _userAccountRepository.ChangePassword(userId, newPassword);
-            _unitOfWork.Commit();
-
             var result = _userAccountRepository.GetUserById(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(BCrypt.Net.BCrypt.Verify(newPassword, result.Password));
-
-            _userAccountRepository.DeleteUserById(userId);
-            _unitOfWork.Commit();
         }
 
+        [TestMethod]
+        public void ChangePasswordByEmail_UserAccountRepository()
+        {
+            var user = new UserAccount
+            {
+                Email = "test@example.com",
+                FullName = "John Doe",
+                Gender = "Nam",
+                LoginName = "johndoe",
+                Password = "password",
+                Phone = "0329245971",
+                DateOfBirth = DateTime.Now,
+                Status = 1
+            };
+            _userAccountRepository.Add(user);
+            _unitOfWork.Commit();
+
+            string userEmail = user.Email;
+            string newPassword = "newpassword";
+
+            _userAccountRepository.ChangePassword(userEmail, newPassword);
+            var result = _userAccountRepository.GetUserByEmail(userEmail);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(BCrypt.Net.BCrypt.Verify(newPassword, result.Password));
+        }
     }
+           
 }
+
