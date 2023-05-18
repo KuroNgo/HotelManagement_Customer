@@ -12,9 +12,9 @@ namespace HotelManagement_Customer.WebMVC.Api
     [RoutePrefix("api/user")]
     public class UserController : ApiControllerBase
     {
-        IUserService _userService;
+        IUserServices _userService;
         // now don't run, because the dependence has not create
-        public UserController(IErrorServices errorServices, IUserService userService)
+        public UserController(IErrorServices errorServices, IUserServices userService)
             : base(errorServices)
         {
             this._userService = userService;
@@ -32,7 +32,7 @@ namespace HotelManagement_Customer.WebMVC.Api
                 }
                 else
                 {
-                    var listUser = _userService.GetAllAccount();
+                    var listUser = _userService.GetAllAccounts();
 
                     response = request.CreateResponse(HttpStatusCode.OK, listUser);
                 }
