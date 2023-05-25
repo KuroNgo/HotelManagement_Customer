@@ -11,9 +11,9 @@ namespace HotelManagement_Customer.Service
 {
     public interface IHotelServices
     {
-        void Add(HotelDetail hotelDetail);
+        HotelDetail Add(HotelDetail hotelDetail);
         void Update(HotelDetail hotelDetail);
-        void Delete(int id);
+        HotelDetail Delete(int id);
         IEnumerable<HotelDetail> GetAllHotel();
         HotelDetail GetById(int id);
         void SaveChanges();
@@ -28,14 +28,14 @@ namespace HotelManagement_Customer.Service
             this._HotelDetailRepository = hotelDetailRepository;
             this._unitOfWork = unitOfWork;
         }
-        public void Add(HotelDetail hotelDetail)
+        public HotelDetail Add(HotelDetail hotelDetail)
         {
-            _HotelDetailRepository.Add(hotelDetail);
+            return _HotelDetailRepository.Add(hotelDetail);
         }
 
-        public void Delete(int id)
+        public HotelDetail Delete(int id)
         {
-            _HotelDetailRepository.Delete(id);
+            return _HotelDetailRepository.Delete(id);
         }
 
         public IEnumerable<HotelDetail> GetAllHotel()
