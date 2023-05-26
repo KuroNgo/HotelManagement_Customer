@@ -7,8 +7,8 @@ namespace HotelManagement_Customer.Service
 {
     public interface IUserServices
     {
-        void Add(UserAccount hotelDetail);
-        void Update(UserAccount hotelDetail);
+        void Add(UserAccount userAccount);
+        void Update(UserAccount userAccount);
         void Delete(int id);
         UserAccount GetById(int id);
         UserAccount GetByLoginName(string loginName);
