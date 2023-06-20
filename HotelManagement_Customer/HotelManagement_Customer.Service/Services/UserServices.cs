@@ -7,9 +7,9 @@ namespace HotelManagement_Customer.Service
 {
     public interface IUserServices
     {
-        void Add(UserAccount userAccount);
+        UserAccount Add(UserAccount userAccount);
         void Update(UserAccount userAccount);
-        void Delete(int id);
+        UserAccount Delete(int id);
         UserAccount GetById(int id);
         UserAccount GetByLoginName(string loginName);
         IEnumerable<UserAccount> GetAllAccounts();
@@ -27,9 +27,9 @@ namespace HotelManagement_Customer.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(UserAccount userAccount)
+        public UserAccount Add(UserAccount userAccount)
         {
-            _userRepository.AddUser(userAccount);
+            return _userRepository.Add(userAccount);
         }
 
         public void Update(UserAccount userAccount)
@@ -37,9 +37,9 @@ namespace HotelManagement_Customer.Service
             _userRepository.UpdateUser(userAccount);
         }
 
-        public void Delete(int id)
+        public UserAccount Delete(int id)
         {
-            _userRepository.DeleteUserById(id);
+            return _userRepository.Delete(id);
         }
 
         public UserAccount GetById(int id)
