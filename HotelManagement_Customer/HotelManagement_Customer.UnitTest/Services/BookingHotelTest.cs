@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace HotelManagement_Customer.UnitTest.ServicesTest
 {
@@ -47,7 +48,7 @@ namespace HotelManagement_Customer.UnitTest.ServicesTest
         }
 
         [TestMethod]
-        public void BKH_Service_GetAll()
+        public void BKH_Service_GetAllGetAllByHotelDetail()
         {
             _mockBKHRepository.Setup(m => m.GetAll(null)).Returns(_listBooks);
 
@@ -55,6 +56,29 @@ namespace HotelManagement_Customer.UnitTest.ServicesTest
 
             Assert.IsNotNull(reusult);
             Assert.AreEqual(3, reusult.Count);
+        }
+
+        [TestMethod]
+        public void BKH_Service_Create()
+        {
+            BookingHotel bookingHotel = new BookingHotel();
+            bookingHotel.Id = 1;
+            bookingHotel.Price = 2000;
+            bookingHotel.CreateDate = DateTime.Now;
+            bookingHotel.PaymentDay = DateTime.Now;
+            bookingHotel.BookingDate = DateTime.Now;
+            bookingHotel.DeleteDate = DateTime.Now;
+
+            _mockBKHRepository.Setup(m => m.Add(bookingHotel)).Returns((BookingHotel p) =>
+            {
+                p.Id = 1;
+                return p;
+            });
+
+            var reusult = _mockBookingServices.Add(bookingHotel);
+
+            Assert.IsNotNull(reusult);
+            Assert.AreEqual(1, reusult.Id);
         }
     }
 }

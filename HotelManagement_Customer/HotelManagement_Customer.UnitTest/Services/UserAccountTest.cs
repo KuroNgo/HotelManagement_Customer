@@ -28,13 +28,19 @@ namespace HotelManagement_Customer.UnitTest.Services
             _userServices = new UserServices(_mockUserRepository.Object, _mockUnitOfWork.Object);
             _usersList = new List<UserAccount>()
             {
-                new UserAccount(){Id = 1, FullName = "PPP", Gender = "Male",
+                new UserAccount(){
+                    Id = 1,
+                    FullName = "PPP", Gender = "Male",
                     Email = "PPP@gmail.com", Phone = "09123456", LoginName = "PPP",
                     DateOfBirth = new DateTime(2002, 6, 11), Password = "hahaha" },
-                new UserAccount(){Id = 2, FullName = "VVV", Gender = "Male",
+                new UserAccount(){
+                    Id = 2 ,
+                    FullName = "VVV", Gender = "Male",
                     Email = "VVV@gmail.com", Phone = "091234567", LoginName = "VVV",
                     DateOfBirth = new DateTime(2002, 4, 10), Password = "hihihi"},
-                new UserAccount(){Id = 3, FullName = "SSS", Gender = "Male",
+                new UserAccount(){
+                    Id = 3,
+                    FullName = "SSS", Gender = "Male",
                     Email = "SSS@gmail.com", Phone = "0912345678", LoginName = "SSS",
                     DateOfBirth = new DateTime(2002, 2, 20), Password = "huhuhu"}
             };
@@ -43,7 +49,7 @@ namespace HotelManagement_Customer.UnitTest.Services
         [TestMethod]
         public void UserAccount_Service_GetAll()
         {
-            _mockUserRepository.Setup(m => m.GetAll(null)).Returns(_usersList);
+            _mockUserRepository.Setup(n => n.GetAll(null)).Returns(_usersList);
 
             var reusult = _userServices.GetAllAccounts() as List<UserAccount>;
 

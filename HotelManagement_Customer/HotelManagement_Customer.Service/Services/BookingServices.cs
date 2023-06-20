@@ -12,9 +12,9 @@ namespace HotelManagement_Customer.Service
     // When you call API, the interface is called
     public interface IBookingServices
     {
-        void Add(BookingHotel bookingHotel);
+        BookingHotel Add(BookingHotel bookingHotel);
         void Update(BookingHotel bookingHotel);
-        void Delete(int id);
+        BookingHotel Delete(int id);
         IEnumerable<BookingHotel> GetAllGetAllByHotelDetail();
         IEnumerable<BookingHotel> GetAllGetAllByUserAccount();
         BookingHotel GetById(int id);
@@ -29,14 +29,14 @@ namespace HotelManagement_Customer.Service
             this._unitOfWork = unitOfWork;
             this._bookingHotelRepository = bookingHotelRepository;
         }
-        public void Add(BookingHotel bookingHotel)
+        public BookingHotel Add(BookingHotel bookingHotel)
         {
-            _bookingHotelRepository.Add(bookingHotel);
+            return _bookingHotelRepository.Add(bookingHotel);
         }
 
-        public void Delete(int id)
+        public BookingHotel Delete(int id)
         {
-            _bookingHotelRepository.Delete(id);
+            return _bookingHotelRepository.Delete(id);
         }
 
         public IEnumerable<BookingHotel> GetAllGetAllByUserAccount()
